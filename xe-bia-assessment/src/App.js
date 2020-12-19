@@ -7,7 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { ThemeProvider } from '@material-ui/styles';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Login from './components/Login';
 import Planets from './components/Planets';
 
@@ -88,6 +88,10 @@ function App() {
     console.log(e.target.value)
     setSearch(e.target.value)
   }
+
+  const handleClick = () => {
+    setName('')
+  }
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -97,6 +101,9 @@ function App() {
               <Typography className={classes.title} variant="h6" noWrap>
                 {name ? `Hi ${name}` : `Login`}
           </Typography>
+          {name ? <Link to="/" variant="contained" color="primary" onClick={handleClick}>
+						Logout
+					</Link> : ''}
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
